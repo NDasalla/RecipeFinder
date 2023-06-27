@@ -1,5 +1,5 @@
-const recipes = {
-  spaghettiBolognese: {
+const recipeData = [
+  {
     name: "Spaghetti Bolognese",
     country: "Italy",
     imageUrl:
@@ -18,7 +18,7 @@ const recipes = {
       parmesanCheese: "1 tablespoon",
     },
   },
-  chickenTikkaMasala: {
+  {
     name: "Chicken Tikka Masala",
     country: "India",
     imageUrl:
@@ -40,7 +40,7 @@ const recipes = {
       salt: "1 teaspoon",
     },
   },
-  sushiRolls: {
+  {
     name: "Sushi Rolls",
     country: "Japan",
     imageUrl:
@@ -53,7 +53,7 @@ const recipes = {
       avocado: "1 whole",
     },
   },
-  chickenParmesan: {
+  {
     name: "Chicken Parmesan",
     country: "Italy",
     imageUrl:
@@ -71,7 +71,7 @@ const recipes = {
       blackPepper: "1 teaspoon",
     },
   },
-  padThai: {
+  {
     name: "Pad Thai",
     country: "Thailand",
     imageUrl:
@@ -93,6 +93,6 @@ const recipes = {
       redChiliFlakes: "2 tablespoons",
     },
   },
-};
+];
 
-export { recipes };
+export default recipeData;
