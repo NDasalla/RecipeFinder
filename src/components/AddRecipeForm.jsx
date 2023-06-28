@@ -2,9 +2,10 @@ import { PropTypes } from "prop-types";
 import { useState } from "react";
 
 const initialRecipeFormState = {
-  name: "",
-  country: "",
-  imageUrl: "",
+  name: "Hamburger",
+  country: "Hamburg",
+  imageUrl:
+    "https://c4.wallpaperflare.com/wallpaper/143/223/715/food-burgers-hamburgers-fast-food-wallpaper-preview.jpg",
   ingredients: {},
 };
 
@@ -22,15 +23,27 @@ const AddRecipeForm = ({ onAddRecipe }) => {
     });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     // modal should close
     // form should clear
     setRecipeFormState(initialRecipeFormState);
     // new job should be added to the DOM
-    onAddRecipe({
+    const preparedRecipe = {
       ...recipeFormState,
+    };
+    // send request to save job to db and get response
+    const response = await fetch("http://localhost:3000/recipes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(preparedRecipe),
     });
+    console.log("response", response);
+    const savedRecipe = await response.json();
+    console.log("savedRecipe", savedRecipe);
+    onAddRecipe(savedRecipe);
   };
 
   return (
@@ -46,7 +59,10 @@ const AddRecipeForm = ({ onAddRecipe }) => {
         //because we want to add ingredients after
         if (key === "ingredients") return;
         return (
-          <p key={i} className="mb-5 w-[390px] lg:w-[500px] mx-auto px-[46px]">
+          <fieldset
+            key={i}
+            className="mb-5 w-[390px] lg:w-[500px] mx-auto px-[46px]"
+          >
             <label className="text-xl capitalize font-bold text-white">
               {key}:
             </label>
@@ -54,11 +70,11 @@ const AddRecipeForm = ({ onAddRecipe }) => {
             <input
               name={key}
               onChange={handleInputChange}
-              value={recipeFormState[i]}
+              value={recipeFormState[key]}
               type={type}
               className="text-black bg-white border-4 focus:outline-none p-2 mt-1 w-full"
             />
-          </p>
+          </fieldset>
         );
       })}
       <input

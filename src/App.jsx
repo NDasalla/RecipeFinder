@@ -5,12 +5,48 @@ import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeCard from "./components/RecipeCard";
 import SearchBar from "./components/SearchBar";
 import Modal from "./ui/Modal";
-import recipeData from "./utils/recipeData";
+// import recipeData from "./utils/recipeData";
 
 const App = () => {
-  const [recipes, setRecipes] = useState(recipeData);
+  const [recipes, setRecipes] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    async function fetchRecipes() {
+      const response = await fetch("http://localhost:3000/recipes"); // get response
+      const recipes = await response.json(); // parse response body text (make it an array instead of a string)
+      setRecipes(recipes);
+    }
+
+    fetchRecipes();
+  }, []);
+
+  useEffect(() => {
+    setRecipes(
+      recipes.filter((recipe) => {
+        return recipe.name.toUpperCase().includes(search.toUpperCase());
+      })
+    );
+  }, [recipes, search]);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        hideModal();
+      }
+    };
+    console.log("adding event listener");
+    window.addEventListener("keydown", handleEscape);
+    return () => {
+      console.log("removing event listener");
+      window.removeEventListener("keydown", handleEscape);
+    };
+  });
+
+  const recipeCards = recipes.map((recipe, i) => (
+    <RecipeCard recipe={recipe} key={i} />
+  ));
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -28,19 +64,6 @@ const App = () => {
       return [...recipes, newRecipe];
     });
   };
-
-  const recipeCards = recipes.map((recipe, i) => (
-    <RecipeCard recipe={recipe} key={i} />
-  ));
-
-  useEffect(() => {
-    setRecipes(
-      recipeData.filter((recipe) => {
-        return recipe.name.toUpperCase().includes(search.toUpperCase());
-      })
-    );
-  }, [search]);
-
   /*TODOS
     - navbar, margin/padding
   */
