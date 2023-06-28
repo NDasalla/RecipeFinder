@@ -12,24 +12,32 @@ const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [search, setSearch] = useState("");
 
+  //useEffect to get recipes from database on mount
   useEffect(() => {
     async function fetchRecipes() {
       const response = await fetch("http://localhost:3000/recipes"); // get response
-      const recipes = await response.json(); // parse response body text (make it an array instead of a string)
-      setRecipes(recipes);
+      const recipeData = await response.json(); // parse response body text (make it an array instead of a string)
+      setRecipes(recipeData);
     }
 
     fetchRecipes();
   }, []);
 
+  //useEffect whenever search changes
   useEffect(() => {
-    setRecipes(
-      recipes.filter((recipe) => {
-        return recipe.name.toUpperCase().includes(search.toUpperCase());
-      })
-    );
-  }, [recipes, search]);
+    async function fetchRecipes() {
+      const response = await fetch("http://localhost:3000/recipes"); // get response
+      const recipeData = await response.json(); // parse response body text (make it an array instead of a string)
+      setRecipes(
+        recipeData.filter((recipe) => {
+          return recipe.name.toUpperCase().includes(search.toUpperCase());
+        })
+      );
+    }
+    fetchRecipes();
+  }, [search]);
 
+  //useEffect for eventListeners
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
@@ -69,11 +77,11 @@ const App = () => {
   */
   return (
     <div className="max-w-7xl mx-auto text-center mb-12">
-      <p className="text-7xl pb-8">Recipe? Recipe!</p>
+      <p className="text-7xl pb-8 drop-shadow-lg">Recipe? Recipe!</p>
       <SearchBar search={search} setSearch={setSearch} />
       <div>
         <button
-          className="bg-blue-500 px-4 py-2 my-6 hover:bg-blue-600 transition"
+          className="bg-blue-500 px-4 py-2 my-6 text-white hover:bg-blue-600 transition"
           onClick={showModal}
         >
           + Add New Recipe

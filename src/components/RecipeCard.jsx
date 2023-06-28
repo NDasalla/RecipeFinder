@@ -1,5 +1,3 @@
-import { PropTypes } from "prop-types";
-
 const RecipeCard = ({ recipe }) => {
   const { name, country, imageUrl, ingredients } = recipe;
 
@@ -35,13 +33,13 @@ const RecipeCard = ({ recipe }) => {
   );
 };
 
-RecipeCard.propTypes = {
-  recipe: PropTypes.shape({
-    name: PropTypes.string,
-    country: PropTypes.string,
-    imageUrl: PropTypes.string,
-    ingredients: PropTypes.shape,
-  }),
-};
+// RecipeCard.propTypes = {
+//   recipe: PropTypes.shape({
+//     name: PropTypes.string,
+//     country: PropTypes.string,
+//     imageUrl: PropTypes.string,
+//     ingredients: PropTypes.shape,
+//   }),
+// };
 
 export default RecipeCard;

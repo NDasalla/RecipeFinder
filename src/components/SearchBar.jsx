@@ -5,21 +5,6 @@ const SearchBar = ({ search, setSearch }) => {
     setSearch(e.target.value);
   };
 
-  //  const maxLengthHandler = (e) => {
-  //      setMaxLength(e.target.value);
-  //  }
-
-  //  const sortHandler = (e) => {
-  //      sortByLength(e.target.value);
-  //  }
-
-  // const sortByLength = () => {
-  //     if(sortValue = false){
-  //         sortValue = true;
-  //         setSortValue = sortValue;
-  //     }
-  // }
-
   return (
     <div className="flex justify-center space-x-2">
       <label htmlFor="search">Search Recipe Name:</label>
@@ -28,11 +13,8 @@ const SearchBar = ({ search, setSearch }) => {
         name="search"
         onChange={searchHandler}
         value={search}
-        className="border-[1px] border-black"
+        className="border-[1px] border-black focus:outline-none"
       />
-      {/* <label htmlFor="max-length">Max Length</label>
-         <input type="number" name="max-length" onChange={maxLengthHandler} value={maxLength} />
-         <button onClick = {sortHandler}>Sort</button> */}
     </div>
   );
 };
