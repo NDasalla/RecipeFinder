@@ -7,13 +7,16 @@ function Modal({ isVisible, hideModal, children }) {
   return (
     <div
       onClick={hideModal}
-      className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-md flex justify-items-center items-center"
+      className="fixed inset-0 bg-gray-600 bg-opacity-40 backdrop-blur-md flex justify-items-center items-center"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="text-white max-w-xl w-144 mx-auto flex flex-col"
+        className="bg-gray-500 p-4 text-white max-w-xl w-144 mx-auto flex flex-col"
       >
-        <button onClick={hideModal} className="text-xl place-self-end">
+        <button
+          onClick={hideModal}
+          className="text-2xl text-black bg-red-500 place-self-end px-2"
+        >
           X
         </button>
         <div className="text-white bg-green p-8">{children}</div>

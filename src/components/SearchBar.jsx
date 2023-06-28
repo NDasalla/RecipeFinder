@@ -21,13 +21,14 @@ const SearchBar = ({ search, setSearch }) => {
   // }
 
   return (
-    <div className="flex justify-center">
-      <label htmlFor="search">Search Recipe Name</label>
+    <div className="flex justify-center space-x-2">
+      <label htmlFor="search">Search Recipe Name:</label>
       <input
         type="text"
         name="search"
         onChange={searchHandler}
         value={search}
+        className="border-[1px] border-black"
       />
       {/* <label htmlFor="max-length">Max Length</label>
          <input type="number" name="max-length" onChange={maxLengthHandler} value={maxLength} />
