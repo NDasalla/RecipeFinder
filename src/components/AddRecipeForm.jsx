@@ -6,7 +6,7 @@ const initialRecipeFormState = {
   country: "Hamburg",
   imageUrl:
     "https://c4.wallpaperflare.com/wallpaper/143/223/715/food-burgers-hamburgers-fast-food-wallpaper-preview.jpg",
-  ingredients: {},
+  ingredients: { ingredients: "I will be updating this soon!" },
 };
 
 const AddRecipeForm = ({ onAddRecipe }) => {
@@ -29,9 +29,7 @@ const AddRecipeForm = ({ onAddRecipe }) => {
     // form should clear
     setRecipeFormState(initialRecipeFormState);
     // new job should be added to the DOM
-    const preparedRecipe = {
-      ...recipeFormState,
-    };
+    const preparedRecipe = { ...recipeFormState };
     // send request to save job to db and get response
     const response = await fetch("http://localhost:3000/recipes", {
       method: "POST",

@@ -77,7 +77,7 @@ const App = () => {
   */
   return (
     <div className="max-w-7xl mx-auto text-center mb-12">
-      <p className="text-7xl pb-8 drop-shadow-lg">Recipe? Recipe!</p>
+      <p className="text-7xl pb-8">Recipe? Recipe!</p>
       <SearchBar search={search} setSearch={setSearch} />
       <div>
         <button

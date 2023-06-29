@@ -1,6 +1,7 @@
 {
   "recipes": [
     {
+      "id": "1",
       "name": "Spaghetti Bolognese",
       "country": "Italy",
       "imageUrl": "https://images.pexels.com/photos/7218637/pexels-photo-7218637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -19,6 +20,7 @@
       }
     },
     {
+      "id": "2",
       "name": "Chicken Tikka Masala",
       "country": "India",
       "imageUrl": "https://cafedelites.com/wp-content/uploads/2018/04/Best-Chicken-Tikka-Masala-IMAGE-1-1365x2048.jpg",
@@ -40,6 +42,7 @@
       }
     },
     {
+      "id": "3",
       "name": "Sushi Rolls",
       "country": "Japan",
       "imageUrl": "https://cdn.greatlifepublishing.net/wp-content/uploads/sites/2/2014/09/21140224/sushi.jpg",
@@ -52,6 +55,7 @@
       }
     },
     {
+      "id": "4",
       "name": "Chicken Parmesan",
       "country": "Italy",
       "imageUrl": "https://assets.bonappetit.com/photos/5ea8f0df16738800085ad5d2/4:3/w_1500,h_1125,c_limit/Chicken-Parmesean-Recipe-Lede.jpg",
@@ -69,6 +73,7 @@
       }
     },
     {
+      "id": "5",
       "name": "Pad Thai",
       "country": "Thailand",
       "imageUrl": "https://c0.wallpaperflare.com/preview/908/749/252/plant-produce-food-vegetable.jpg",
@@ -88,6 +93,15 @@
         "lime": "2 wedges",
         "redChiliFlakes": "2 tablespoons"
       }
+    },
+    {
+      "name": "Hamburger",
+      "country": "Hamburg",
+      "imageUrl": "https://c4.wallpaperflare.com/wallpaper/143/223/715/food-burgers-hamburgers-fast-food-wallpaper-preview.jpg",
+      "ingredients": {
+        "ingredients": "I will be updating this soon!"
+      },
+      "id": "ScwLCiq"
     }
   ]
 }

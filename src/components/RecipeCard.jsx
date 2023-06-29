@@ -1,13 +1,5 @@
 const RecipeCard = ({ recipe }) => {
   const { name, country, imageUrl, ingredients } = recipe;
-
-  /*TODOS
-    - Don't Repeat Yourself (modify to have less repetitive code)
-    name
-    country
-    imageUrl
-    ingredients
-  */
   return (
     <div className="shadow-[0_0px_5px_5px_rgba(0,0,0,0.1)] max-w-xl mx-auto">
       <p className="text-3xl font-bold mt-4">{name}</p>
