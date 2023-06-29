@@ -95,4 +95,12 @@ const recipeData = [
   },
 ];
 
+// POSSIBLE DATA
+// name
+// country
+// imageUrl
+// ingredients
+// description
+// cookingProcess
+
 export default recipeData;
