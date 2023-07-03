@@ -83,11 +83,11 @@ const Root = () => {
           + Add New Recipe
         </button>
       </div>
-      <div className="mt-12 mx-12 grid lg:grid-cols-3 gap-6">{recipeCards}</div>
+      {/* <div className="mt-12 mx-12 grid lg:grid-cols-3 gap-6">{recipeCards}</div> */}
       <Modal isVisible={isModalVisible} hideModal={hideModal}>
         <AddRecipeForm onAddRecipe={onAddRecipe} />
       </Modal>
-      {/* <Outlet /> */}
+      <Outlet />
     </div>
   );
 };
