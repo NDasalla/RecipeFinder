@@ -11,24 +11,7 @@ export async function loader() {
 }
 
 const Root = () => {
-  const recipeData = useLoaderData();
-  const [recipes, setRecipes] = useState(recipeData);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [search, setSearch] = useState("");
-
-  //useEffect whenever search changes
-  useEffect(() => {
-    async function fetchRecipes() {
-      const response = await fetch("http://localhost:3000/recipes"); // get response
-      const recipeData = await response.json(); // parse response body text (make it an array instead of a string)
-      setRecipes(
-        recipeData.filter((recipe) => {
-          return recipe.name.toUpperCase().includes(search.toUpperCase());
-        })
-      );
-    }
-    fetchRecipes();
-  }, [search]);
 
   //useEffect for eventListeners
   useEffect(() => {
@@ -43,11 +26,7 @@ const Root = () => {
       console.log("removing event listener");
       window.removeEventListener("keydown", handleEscape);
     };
-  });
-
-  const recipeCards = recipes.map((recipe, i) => {
-    return <RecipeCard recipe={recipe} key={i} />;
-  });
+  }, [isModalVisible]);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -57,13 +36,9 @@ const Root = () => {
     setIsModalVisible(false);
   };
 
-  const onAddRecipe = (newRecipe) => {
+  const onAddRecipe = () => {
     // modal should close
     hideModal();
-    // new recipe should be added to the DOM
-    setRecipes((recipes) => {
-      return [...recipes, newRecipe];
-    });
   };
 
   /*TODOS
@@ -74,7 +49,7 @@ const Root = () => {
       <p className="text-7xl pb-8">
         <Link to="/">Recipe? Recipe!</Link>
       </p>
-      <SearchBar search={search} setSearch={setSearch} />
+      {/* <SearchBar search={search} setSearch={setSearch} /> */}
       <div>
         <button
           className="bg-blue-500 px-4 py-2 my-6 text-white hover:bg-blue-600 transition"

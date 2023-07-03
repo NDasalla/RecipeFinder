@@ -9,11 +9,11 @@ import Root, {
   // action as rootAction,
   loader as rootLoader,
 } from "./routes/root";
-import RecipeCard, {
-  loader as recipeCardLoader,
-} from "./components/RecipeCard";
 import AddRecipeForm from "./components/AddRecipeForm";
 import Recipe from "./components/Recipe";
+import RecipeList, {
+  loader as recipeListLoader,
+} from "./components/RecipeList";
 
 // const router = createBrowserRouter([
 //   {
@@ -43,7 +43,7 @@ import Recipe from "./components/Recipe";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" loader={rootLoader} element={<Root />}>
-      <Route path="" loader={recipeCardLoader} element={<RecipeCard />} />
+      <Route path="" loader={recipeListLoader} element={<RecipeList />} />
       <Route path="recipes/addRecipe" element={<AddRecipeForm />} />
       <Route path="recipes/:recipeId" element={<Recipe />} />
     </Route>

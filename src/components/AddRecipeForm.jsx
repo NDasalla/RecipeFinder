@@ -41,7 +41,7 @@ const AddRecipeForm = ({ onAddRecipe }) => {
     console.log("response", response);
     const savedRecipe = await response.json();
     console.log("savedRecipe", savedRecipe);
-    onAddRecipe(savedRecipe);
+    onAddRecipe();
   };
 
   return (
