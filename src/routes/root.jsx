@@ -7,25 +7,14 @@ import SearchBar from "../components/SearchBar";
 import Modal from "../ui/Modal";
 
 export async function loader() {
-  const recipes = await fetchRecipes();
-  return { recipes };
+  return fetchRecipes();
 }
 
 const Root = () => {
-  const [recipes, setRecipes] = useState(loader());
+  const recipeData = useLoaderData();
+  const [recipes, setRecipes] = useState(recipeData);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [search, setSearch] = useState("");
-
-  //useEffect to get recipes from database on mount
-  //   useEffect(() => {
-  //     async function fetchRecipes() {
-  //       const response = await fetch("http://localhost:3000/recipes"); // get response
-  //       const recipeData = await response.json(); // parse response body text (make it an array instead of a string)
-  //       setRecipes(recipeData);
-  //     }
-
-  //     fetchRecipes();
-  //   }, []);
 
   //useEffect whenever search changes
   useEffect(() => {
@@ -56,9 +45,9 @@ const Root = () => {
     };
   });
 
-  const recipeCards = recipes.map((recipe, i) => (
-    <RecipeCard recipe={recipe} key={i} />
-  ));
+  const recipeCards = recipes.map((recipe, i) => {
+    return <RecipeCard recipe={recipe} key={i} />;
+  });
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -82,7 +71,9 @@ const Root = () => {
     */
   return (
     <div className="max-w-7xl mx-auto text-center mb-12">
-      <p className="text-7xl pb-8">Recipe? Recipe!</p>
+      <p className="text-7xl pb-8">
+        <Link to="/">Recipe? Recipe!</Link>
+      </p>
       <SearchBar search={search} setSearch={setSearch} />
       <div>
         <button
@@ -96,6 +87,7 @@ const Root = () => {
       <Modal isVisible={isModalVisible} hideModal={hideModal}>
         <AddRecipeForm onAddRecipe={onAddRecipe} />
       </Modal>
+      {/* <Outlet /> */}
     </div>
   );
 };
