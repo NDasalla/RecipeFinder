@@ -12,35 +12,10 @@ import Root, {
 import AddRecipeForm, {
   action as addRecipeFormAction,
 } from "./components/AddRecipeForm";
-import Recipe from "./components/Recipe";
+import Recipe, { loader as recipeLoader } from "./components/Recipe";
 import RecipeList, {
   loader as recipeListLoader,
 } from "./components/RecipeList";
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Root />,
-//     loader: rootLoader,
-//     children: [
-//       {
-//         path: "",
-//         element: <RecipeCard />,
-
-//       },
-//       {
-//         path: "recipes/addRecipe",
-//         element: <AddRecipeForm />,
-
-//       },
-//       {
-//         path: "recipes/:recipeId",
-//         element: <Recipe />,
-//       }
-//     ]
-//     // action: rootAction,
-//   },
-// ]);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,7 +26,11 @@ const router = createBrowserRouter(
         action={addRecipeFormAction}
         element={<AddRecipeForm />}
       />
-      <Route path="recipes/:recipeId" element={<Recipe />} />
+      <Route
+        path="recipes/:recipeId"
+        loader={recipeLoader}
+        element={<Recipe />}
+      />
     </Route>
   )
 );

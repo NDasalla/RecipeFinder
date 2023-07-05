@@ -10,7 +10,7 @@ export const loader = async () => {
 };
 
 const RecipeList = () => {
-  const recipeData = useLoaderData();
+  const { recipeData } = useLoaderData();
   const [recipes, setRecipes] = useState(recipeData);
   const [search, setSearch] = useState("");
 
@@ -30,11 +30,11 @@ const RecipeList = () => {
 
   const recipeCards = recipes.map((recipe) => {
     return (
-      <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
-        <div className="mt-12 mx-12 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-6">
+      <div key={recipe.id} className="flex justify-center">
+        <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
           <RecipeCard recipe={recipe} />
-        </div>
-      </Link>
+        </Link>
+      </div>
     );
   });
 
@@ -44,12 +44,12 @@ const RecipeList = () => {
       <div className="mt-12">
         <Link
           to="/recipes/addRecipe"
-          className="bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 transition"
+          className=" bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 transition"
         >
           Add Recipe
         </Link>
       </div>
-      <div className="">{recipeCards}</div>
+      <div className="mt-12 mx-12 grid lg:grid-cols-3 gap-6">{recipeCards}</div>
     </>
   );
 };
