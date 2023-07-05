@@ -43,7 +43,7 @@ import RecipeList, {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" loader={rootLoader} element={<Root />}>
-      <Route path="" loader={recipeListLoader} element={<RecipeList />} />
+      <Route index loader={recipeListLoader} element={<RecipeList />} />
       <Route path="recipes/addRecipe" element={<AddRecipeForm />} />
       <Route path="recipes/:recipeId" element={<Recipe />} />
     </Route>
