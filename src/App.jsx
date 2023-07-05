@@ -9,7 +9,9 @@ import Root, {
   // action as rootAction,
   loader as rootLoader,
 } from "./routes/root";
-import AddRecipeForm from "./components/AddRecipeForm";
+import AddRecipeForm, {
+  action as addRecipeFormAction,
+} from "./components/AddRecipeForm";
 import Recipe from "./components/Recipe";
 import RecipeList, {
   loader as recipeListLoader,
@@ -44,7 +46,11 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" loader={rootLoader} element={<Root />}>
       <Route index loader={recipeListLoader} element={<RecipeList />} />
-      <Route path="recipes/addRecipe" element={<AddRecipeForm />} />
+      <Route
+        path="recipes/addRecipe"
+        action={addRecipeFormAction}
+        element={<AddRecipeForm />}
+      />
       <Route path="recipes/:recipeId" element={<Recipe />} />
     </Route>
   )

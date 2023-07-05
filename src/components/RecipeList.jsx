@@ -3,6 +3,7 @@ import RecipeCard from "./RecipeCard";
 import { fetchRecipes } from "../utils/recipes";
 import SearchBar from "./SearchBar";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const loader = async () => {
   return fetchRecipes();
@@ -28,13 +29,27 @@ const RecipeList = () => {
   }, [search]);
 
   const recipeCards = recipes.map((recipe) => {
-    return <RecipeCard recipe={recipe} key={recipe.id} />;
+    return (
+      <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
+        <div className="mt-12 mx-12 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-6">
+          <RecipeCard recipe={recipe} />
+        </div>
+      </Link>
+    );
   });
 
   return (
     <>
       <SearchBar search={search} setSearch={setSearch} />
-      <div className="mt-12 mx-12 grid lg:grid-cols-3 gap-6">{recipeCards}</div>
+      <div className="mt-12">
+        <Link
+          to="/recipes/addRecipe"
+          className="bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 transition"
+        >
+          Add Recipe
+        </Link>
+      </div>
+      <div className="">{recipeCards}</div>
     </>
   );
 };

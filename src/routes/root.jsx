@@ -11,57 +11,24 @@ export async function loader() {
 }
 
 const Root = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  //useEffect for eventListeners
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
-        hideModal();
-      }
-    };
-    console.log("adding event listener");
-    window.addEventListener("keydown", handleEscape);
-    return () => {
-      console.log("removing event listener");
-      window.removeEventListener("keydown", handleEscape);
-    };
-  }, [isModalVisible]);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const hideModal = () => {
-    setIsModalVisible(false);
-  };
-
-  const onAddRecipe = () => {
-    // modal should close
-    hideModal();
-  };
-
-  /*TODOS
-      - navbar, margin/padding
-    */
   return (
     <div className="max-w-7xl mx-auto text-center mb-12">
-      <p className="text-7xl pb-8">
+      <p className="text-7xl my-10">
         <Link to="/">Recipe? Recipe!</Link>
       </p>
       {/* <SearchBar search={search} setSearch={setSearch} /> */}
-      <div>
+      {/* <div>
         <button
           className="bg-blue-500 px-4 py-2 my-6 text-white hover:bg-blue-600 transition"
           onClick={showModal}
         >
           + Add New Recipe
         </button>
-      </div>
+      </div> */}
       {/* <div className="mt-12 mx-12 grid lg:grid-cols-3 gap-6">{recipeCards}</div> */}
-      <Modal isVisible={isModalVisible} hideModal={hideModal}>
+      {/* <Modal isVisible={isModalVisible} hideModal={hideModal}>
         <AddRecipeForm onAddRecipe={onAddRecipe} />
-      </Modal>
+      </Modal> */}
       <Outlet />
     </div>
   );
