@@ -5,10 +5,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import "./App.css";
-import Root, {
-  // action as rootAction,
-  loader as rootLoader,
-} from "./routes/root";
+import Root, { loader as rootLoader } from "./routes/root";
 import AddRecipeForm, {
   action as addRecipeFormAction,
 } from "./components/AddRecipeForm";
@@ -36,9 +33,6 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  /*TODOS
-    - navbar, margin/padding
-  */
   return <RouterProvider router={router} />;
 };
 

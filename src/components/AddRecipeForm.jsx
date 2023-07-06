@@ -24,7 +24,7 @@ export async function action({ request, params }) {
 
 const AddRecipeForm = () => {
   return (
-    <Form method="post" className="selection:bg-blue-200 flex flex-col gap-2">
+    <Form method="post" className="">
       {/* name, country, imageUrl */}
       {Object.keys(initialRecipeFormState).map((key, i) => {
         let type = "text";

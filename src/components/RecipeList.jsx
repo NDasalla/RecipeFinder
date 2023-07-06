@@ -27,21 +27,10 @@ const RecipeList = () => {
     }
     fetchRecipes();
   }, [search]);
-
-  const recipeCards = recipes.map((recipe) => {
-    return (
-      <div key={recipe.id} className="flex justify-center">
-        <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
-          <RecipeCard recipe={recipe} />
-        </Link>
-      </div>
-    );
-  });
-
   return (
-    <>
+    <div className="mt-6">
       <SearchBar search={search} setSearch={setSearch} />
-      <div className="mt-12">
+      <div className="mt-6">
         <Link
           to="/recipes/addRecipe"
           className=" bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 transition"
@@ -49,8 +38,22 @@ const RecipeList = () => {
           Add Recipe
         </Link>
       </div>
-      <div className="mt-12 mx-12 grid lg:grid-cols-3 gap-6">{recipeCards}</div>
-    </>
+      <div className="mt-6 mx-12 grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+        {recipes.map((recipe) => {
+          return (
+            <div
+              key={recipe.id}
+              className="flex justify-center rounded-lg bg-white 
+              drop-shadow-[0_0_1px_rgba(0,0,0,0.30)]"
+            >
+              <Link to={`/recipes/${recipe.id}`}>
+                <RecipeCard recipe={recipe} />
+              </Link>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 
