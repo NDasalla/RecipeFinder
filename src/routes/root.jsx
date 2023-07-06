@@ -1,93 +1,23 @@
-import { useEffect, useState } from "react";
-import { Outlet, Link, useLoaderData } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { fetchRecipes } from "../utils/recipes";
-import AddRecipeForm from "../components/AddRecipeForm";
-import RecipeCard from "../components/RecipeCard";
-import SearchBar from "../components/SearchBar";
-import Modal from "../ui/Modal";
 
 export async function loader() {
   return fetchRecipes();
 }
 
 const Root = () => {
-  const recipeData = useLoaderData();
-  const [recipes, setRecipes] = useState(recipeData);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [search, setSearch] = useState("");
-
-  //useEffect whenever search changes
-  useEffect(() => {
-    async function fetchRecipes() {
-      const response = await fetch("http://localhost:3000/recipes"); // get response
-      const recipeData = await response.json(); // parse response body text (make it an array instead of a string)
-      setRecipes(
-        recipeData.filter((recipe) => {
-          return recipe.name.toUpperCase().includes(search.toUpperCase());
-        })
-      );
-    }
-    fetchRecipes();
-  }, [search]);
-
-  //useEffect for eventListeners
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
-        hideModal();
-      }
-    };
-    console.log("adding event listener");
-    window.addEventListener("keydown", handleEscape);
-    return () => {
-      console.log("removing event listener");
-      window.removeEventListener("keydown", handleEscape);
-    };
-  });
-
-  const recipeCards = recipes.map((recipe, i) => {
-    return <RecipeCard recipe={recipe} key={i} />;
-  });
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const hideModal = () => {
-    setIsModalVisible(false);
-  };
-
-  const onAddRecipe = (newRecipe) => {
-    // modal should close
-    hideModal();
-    // new recipe should be added to the DOM
-    setRecipes((recipes) => {
-      return [...recipes, newRecipe];
-    });
-  };
-
-  /*TODOS
-      - navbar, margin/padding
-    */
   return (
-    <div className="max-w-7xl mx-auto text-center mb-12">
-      <p className="text-7xl pb-8">
-        <Link to="/">Recipe? Recipe!</Link>
-      </p>
-      <SearchBar search={search} setSearch={setSearch} />
-      <div>
-        <button
-          className="bg-blue-500 px-4 py-2 my-6 text-white hover:bg-blue-600 transition"
-          onClick={showModal}
-        >
-          + Add New Recipe
-        </button>
+    <div className="max-w-auto mx-auto text-center py-12 bg-[#D7A1F9]">
+      <div
+        className="max-w-6xl mx-auto py-12 rounded-xl bg-[#EFDCF9] 
+        drop-shadow-[0_0_5px_rgba(0,0,0,0.50)]"
+      >
+        <p className="text-7xl font-serif">
+          <Link to="/">Recipe? Recipe!</Link>
+        </p>
+        <div className="flex-grow border-t border-gray-400 mt-4"></div>
+        <Outlet />
       </div>
-      <div className="mt-12 mx-12 grid lg:grid-cols-3 gap-6">{recipeCards}</div>
-      <Modal isVisible={isModalVisible} hideModal={hideModal}>
-        <AddRecipeForm onAddRecipe={onAddRecipe} />
-      </Modal>
-      {/* <Outlet /> */}
     </div>
   );
 };
